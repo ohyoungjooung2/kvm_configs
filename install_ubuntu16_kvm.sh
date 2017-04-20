@@ -8,9 +8,8 @@ DFP="$DP/$NAME.img"
 SIZE=20
 VCPUS=1
 OTYPE=linux
-OV="rhel7"
+OV="ubuntu16.04"
 NB="virbr0"
-CUD=`pwd`
 
 #$VI -n $NAME -r $RAM --os-type=$OTYPE --os-variant=$OV --disk path=$DFP,device=disk,bus=virtio,size=$SIZE,sparse=true,format=raw -w bridge=$NB,model=virtio  --console pty,target_type=serial -c $ISO_PATH/CentOS-7-x86_64-Minimal-1611.iso 
 
@@ -27,8 +26,7 @@ $VI \
 --network bridge=$NB \
 --os-type=$OSTYPE \
 --os-variant=$OV \
---location $ISO_PATH/CentOS-7-x86_64-Minimal-1611.iso \
---initrd-inject=$CUD/kvm_ct7_ks.cfg \
---extra-args="ks=file:/kvm_ct7_ks.cfg console=tty0 console=ttyS0,115200n8"
-
-#kvm_ct7_ks.cfg
+--location $ISO_PATH/ubuntu-16.04.2-server-amd64.iso \
+--extra-args="console=tty0 console=ttyS0,115200n8"
+#--initrd-inject=/root/kvm_centos7.cfg \
+#--extra-args="ks=file:/kvm_centos7.cfg console=tty0 console=ttyS0,115200n8"
